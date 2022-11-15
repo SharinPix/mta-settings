@@ -115,7 +115,7 @@ module MtaSettings
       [:smtp, {
         :address              => first_inbox['domain'],
         :port                 => 587,
-        :authentication       => :cram_md5,
+        :authentication       => :plain,
         :user_name            => first_inbox['username'],
         :password             => first_inbox['password'],
         :domain               => first_inbox['domain'],
