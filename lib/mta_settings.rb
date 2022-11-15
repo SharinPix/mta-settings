@@ -113,12 +113,12 @@ module MtaSettings
       response = Net::HTTP.get(URI.parse("https://mailtrap.io/api/v1/inboxes.json?api_token=#{env['MAILTRAP_API_TOKEN']}"))
       first_inbox = JSON.parse(response)[0]
       [:smtp, {
-        :user_name => '12d923ebb1365d',
-        :password => 'bbb07fd33dfe67',
-        :address => 'smtp.mailtrap.io',
-        :domain => 'smtp.mailtrap.io',
-        :port => 587,
-        :authentication => :plain,
+        :address              => first_inbox['domain'],
+        :port                 => 587,
+        :authentication       => :cram_md5,
+        :user_name            => first_inbox['username'],
+        :password             => first_inbox['password'],
+        :domain               => first_inbox['domain'],
         :enable_starttls_auto => true
       }]
     end
